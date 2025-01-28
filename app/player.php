@@ -1,4 +1,5 @@
 <?php 
+require_once __DIR__ . './db.php';
 class Player extends DB {
     public static function addPlayer($name, $position, $age, $status = 'active') {
         if (!Auth::isTechnicalDirector()) {
