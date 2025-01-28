@@ -43,3 +43,19 @@ class DB{
     }
 
 }
+
+require_once __DIR__ . '/../../parseEnv.php'; 
+
+// Parsing environment variables
+parseEnv(__DIR__ . '../.env');
+
+// Retrieving environment variables
+$host = getenv("DB_HOST");
+$dbname = getenv("DB_NAME");
+$username = getenv("DB_USERNAME");
+$password = getenv("DB_PASSWORD");
+
+$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+
+// Connecting to the DB
+DB::connect($dsn, $username, $password);
