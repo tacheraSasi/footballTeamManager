@@ -10,7 +10,7 @@
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold mb-4 text-gray-800">Register</h2>
         <?php App::flashErrors(); ?>
-        <form action="register_handler.php" method="POST" class="space-y-4">
+        <form action="handlers/register.php" method="POST" class="space-y-4">
             <div>
                 <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
                 <input type="text" id="username" name="username" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
