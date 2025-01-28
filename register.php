@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/app/app.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
