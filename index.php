@@ -3,16 +3,14 @@ require_once __DIR__ . '/app/auth.php';
 require_once __DIR__ . '/app/player.php';
 require_once __DIR__ . '/app/app.php';
 
-// Redirect to login if not logged in
+// Redirects to login if not logged in
 if (!Auth::isLoggedIn()) {
     App::redirect('login.php');
 }
 
-// Handle role-specific logic
 $isAdmin = Auth::isAdmin();
 $isTechnicalDirector = Auth::isTechnicalDirector();
 
-// Handle form submissions for players
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     switch ($_POST['action']) {
         case 'addPlayer':
@@ -27,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
-// Handle form submissions for technical team
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['teamAction'])) {
     switch ($_POST['teamAction']) {
         case 'addMember':
@@ -42,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['teamAction'])) {
     }
 }
 
-// Fetch players and technical team members
 $players = Player::getPlayers();
 $teamMembers = TechnicalTeam::getMembers();
 

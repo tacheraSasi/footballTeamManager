@@ -1,10 +1,8 @@
 <?php
-// Loading required files
 require __DIR__ . '/app.php';
 require __DIR__ . '/db.php';
 
 
-// Auth class extending the DB
 class Auth extends DB {
     public function __construct() {}
 

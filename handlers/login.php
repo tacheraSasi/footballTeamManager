@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '../app/auth.php';
+require_once '../app/auth.php';
 
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
