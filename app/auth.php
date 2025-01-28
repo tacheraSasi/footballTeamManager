@@ -42,26 +42,38 @@ class Auth extends DB {
         return App::error("Invalid credentials. Failed to login.");
     }
 
-    public static function register($username, $email, $password) {
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    public static function register(string $username, string $email, string $password) {
+        $hashed_password = password_hash(password: $password, algo: PASSWORD_BCRYPT);
         $sql = "INSERT INTO users (username, email, password) VALUES (:name, :email, :password)";
-        $isRegistered = self::query($sql, [
+        $isRegistered = self::query(sql: $sql, params: [
             'name' => $username,
             'email' => $email,
             'password' => $hashed_password,
         ]);
 
         if (!$isRegistered) {
-            return App::error("Failed to register the user. Something went wrong.");
+            return App::error(message: "Failed to register the user. Something went wrong.");
         }
 
-        return App::redirect('login.php');
+        return App::redirect(url: 'login.php');
     }
 
     public static function logout() {
         session_start();
         session_destroy();
         App::redirect("login.php");
+    }
+
+    public static function hasRole(string $role): bool {
+        $user = self::user();
+        return $user && $user["role"] === $role;
+    }
+
+    public static function restrictTo(string $role) {
+        if (!self::hasRole($role)) {
+            App::error("Unauthorized access.");
+            App::redirect("login.php");
+        }
     }
 
     public static function isLoggedIn() {
