@@ -60,9 +60,6 @@ function seedTechnicalTeam() {
 }
 
 try {
-    
-    DB::connect("mysql:host=localhost;dbname=football_team", "root", ""); // Replace with your DB credentials
-
     // Seeding the database
     seedUsers();
     seedPlayers();
