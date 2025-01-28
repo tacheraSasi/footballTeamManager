@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * 
+ * Env variable parser by Tachera Sasi
+ */
 function parseEnv($file) {
     if (!file_exists($file)) {
         throw new Exception("The .env file does not exist.");

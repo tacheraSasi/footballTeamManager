@@ -31,7 +31,23 @@ function seedPlayers() {
         ['name' => 'Kylian Mbappe', 'age' => 24, 'position' => 'Forward', 'status' => 'active'],
         ['name' => 'Neymar Jr', 'age' => 29, 'position' => 'Winger', 'status' => 'suspended'],
         ['name' => 'Paul Pogba', 'age' => 27, 'position' => 'Midfielder', 'status' => 'active'],
+        ['name' => 'Luka Modric', 'age' => 36, 'position' => 'Midfielder', 'status' => 'active'],
+        ['name' => 'Virgil van Dijk', 'age' => 31, 'position' => 'Defender', 'status' => 'active'],
+        ['name' => 'Raheem Sterling', 'age' => 26, 'position' => 'Winger', 'status' => 'active'],
+        ['name' => 'Erling Haaland', 'age' => 21, 'position' => 'Striker', 'status' => 'active'],
+        ['name' => 'Jan Oblak', 'age' => 29, 'position' => 'Goalkeeper', 'status' => 'active'],
+        ['name' => 'Antoine Griezmann', 'age' => 30, 'position' => 'Forward', 'status' => 'active'],
+        ['name' => 'Andrew Robertson', 'age' => 28, 'position' => 'Defender', 'status' => 'active'],
+        ['name' => 'Thomas Muller', 'age' => 32, 'position' => 'Midfielder', 'status' => 'active'],
+        ['name' => 'Pierre-Emerick Aubameyang', 'age' => 33, 'position' => 'Forward', 'status' => 'injured'],
+        ['name' => 'Jadon Sancho', 'age' => 22, 'position' => 'Winger', 'status' => 'active'],
+        ['name' => 'Bruno Fernandes', 'age' => 28, 'position' => 'Midfielder', 'status' => 'active'],
+        ['name' => 'Harry Kane', 'age' => 29, 'position' => 'Striker', 'status' => 'active'],
+        ['name' => 'Gianluigi Donnarumma', 'age' => 23, 'position' => 'Goalkeeper', 'status' => 'active'],
+        ['name' => 'Kalidou Koulibaly', 'age' => 31, 'position' => 'Defender', 'status' => 'active'],
+        ['name' => 'Joao Cancelo', 'age' => 27, 'position' => 'Defender', 'status' => 'active'],
     ];
+    
 
     foreach ($players as $player) {
         DB::query(
