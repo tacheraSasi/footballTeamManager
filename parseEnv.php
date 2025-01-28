@@ -6,6 +6,7 @@
  */
 function parseEnv($file) {
     if (!file_exists($file)) {
+        echo "$file";
         throw new Exception("The .env file does not exist.");
     }
 
