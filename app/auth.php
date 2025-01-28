@@ -5,7 +5,7 @@ require __DIR__ . './db.php';
 require_once __DIR__ . '/../../parseEnv.php'; 
 
 // Parsing environment variables
-parseEnv(__DIR__ . '/../.env');
+parseEnv(__DIR__ . '../.env');
 
 // Retrieving environment variables
 $host = getenv("DB_HOST");
