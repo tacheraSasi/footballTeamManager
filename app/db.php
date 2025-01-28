@@ -10,4 +10,19 @@ class DB{
             die("Error while connect to the db ".$e->getMessage());
         }
     }
+
+    public static function query(string $sql, array $params = []): bool|PDOStatement {
+        if (!self::$conn) {
+            throw new Exception("Database not connected. Call Database::connect() first.");
+        }
+
+        try {
+            $stmt = self::$conn->prepare($sql);
+            $stmt->execute($params);
+            return $stmt;
+        } catch (PDOException $e) {
+            die("Query failed: " . $e->getMessage());
+        }
+    }
+
 }
