@@ -13,10 +13,17 @@ class App
         exit();
     }
 
-    public static function error(string $message)
-    {
-        // Adds error message to the session errors array
-        array_push($_SESSION["errors"], $message);
+    public static function error(string $message) {
+        $_SESSION["errors"][] = $message;
+    }
+
+    public static function flashErrors() {
+        if (!empty($_SESSION["errors"])) {
+            foreach ($_SESSION["errors"] as $error) {
+                echo "<div class='error'>$error</div>";
+            }
+            $_SESSION["errors"] = [];
+        }
     }
 
 
