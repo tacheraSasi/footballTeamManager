@@ -1,27 +1,86 @@
 <?php 
+class Player extends DB {
+    public static function addPlayer($name, $position, $age, $status = 'active') {
+        if (!Auth::isTechnicalDirector()) {
+            return App::error("Only the technical director can add players.");
+        }
 
-// Add player
-function addPlayer($name, $age, $position) {
-    Auth::restrictTo('TECHNICAL_DIRECTOR');
-    $sql = "INSERT INTO players (name, age, position) VALUES (:name, :age, :position)";
-    return DB::query($sql, ['name' => $name, 'age' => $age, 'position' => $position]);
+        $sql = "INSERT INTO players (name, position, age, status) VALUES (:name, :position, :age, :status)";
+        return self::query($sql, [
+            'name' => $name,
+            'position' => $position,
+            'age' => $age,
+            'status' => $status
+        ]);
+    }
+
+    public static function updatePlayer($id, $name, $position, $age, $status) {
+        if (!Auth::isTechnicalDirector()) {
+            return App::error("Only the technical director can update players.");
+        }
+
+        $sql = "UPDATE players SET name = :name, position = :position, age = :age, status = :status WHERE id = :id";
+        return self::query($sql, [
+            'id' => $id,
+            'name' => $name,
+            'position' => $position,
+            'age' => $age,
+            'status' => $status
+        ]);
+    }
+
+    public static function deletePlayer($id) {
+        if (!Auth::isTechnicalDirector()) {
+            return App::error("Only the technical director can delete players.");
+        }
+
+        $sql = "DELETE FROM players WHERE id = :id";
+        return self::query($sql, ['id' => $id]);
+    }
+
+    public static function getPlayers() {
+        $sql = "SELECT * FROM players";
+        return self::fetchAll($sql);
+    }
 }
 
-// Update player
-function updatePlayer($id, $name, $age, $position, $status) {
-    Auth::restrictTo('TECHNICAL_DIRECTOR');
-    $sql = "UPDATE players SET name = :name, age = :age, position = :position, status = :status WHERE id = :id";
-    return DB::query($sql, ['id' => $id, 'name' => $name, 'age' => $age, 'position' => $position, 'status' => $status]);
-}
+class TechnicalTeam extends DB {
+    public static function addMember($name, $role) {
+        if (!Auth::isAdmin()) {
+            return App::error("Only the admin can add technical team members.");
+        }
 
-// Delete player
-function deletePlayer($id) {
-    Auth::restrictTo('TECHNICAL_DIRECTOR');
-    $sql = "DELETE FROM players WHERE id = :id";
-    return DB::query($sql, ['id' => $id]);
-}
+        $sql = "INSERT INTO technical_team (name, role) VALUES (:name, :role)";
+        return self::query($sql, [
+            'name' => $name,
+            'role' => $role
+        ]);
+    }
 
-// Get all players
-function getPlayers() {
-    return DB::fetchAll("SELECT * FROM players");
+    public static function updateMember($id, $name, $role) {
+        if (!Auth::isAdmin()) {
+            return App::error("Only the admin can update technical team members.");
+        }
+
+        $sql = "UPDATE technical_team SET name = :name, role = :role WHERE id = :id";
+        return self::query($sql, [
+            'id' => $id,
+            'name' => $name,
+            'role' => $role
+        ]);
+    }
+
+    public static function deleteMember($id) {
+        if (!Auth::isAdmin()) {
+            return App::error("Only the admin can delete technical team members.");
+        }
+
+        $sql = "DELETE FROM technical_team WHERE id = :id";
+        return self::query($sql, ['id' => $id]);
+    }
+
+    public static function getMembers() {
+        $sql = "SELECT * FROM technical_team";
+        return self::fetchAll($sql);
+    }
 }
