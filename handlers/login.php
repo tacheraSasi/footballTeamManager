@@ -8,5 +8,5 @@ if ($email && $password) {
     Auth::login($email, $password);
 } else {
     App::error("Please fill out all fields.");
-    App::redirect("login.php");
+    App::redirect("../login.php");
 }
